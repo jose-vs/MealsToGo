@@ -6,6 +6,7 @@ import { name as appName } from "./app.json";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { theme } from "./src/infrastructure/theme ";
 import { NavigationContainer } from "@react-navigation/native";
+import { RestaurantContextProvider } from "./src/services/restaurant/restaurant.context";
 
 import {
   useFonts as useOswald,
@@ -29,12 +30,14 @@ export default function Main() {
 
   return (
     <ThemeProvider theme={theme}>
-      <PaperProvider>
-        <NavigationContainer>
-          <TabNavigator />
-          <ExpoStatusBar style="auto" />
-        </NavigationContainer>
-      </PaperProvider>
+      <RestaurantContextProvider>
+        <PaperProvider>
+          <NavigationContainer>
+            <TabNavigator />
+            <ExpoStatusBar style="auto" />
+          </NavigationContainer>
+        </PaperProvider>
+      </RestaurantContextProvider>
     </ThemeProvider>
   );
 }
