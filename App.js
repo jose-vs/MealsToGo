@@ -4,7 +4,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 import { ThemeProvider } from "styled-components/native";
 import { name as appName } from "./app.json";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import { theme } from "./src/infrastructure/theme ";
+import { theme } from "./src/infrastructure/theme";
 import { NavigationContainer } from "@react-navigation/native";
 import { RestaurantContextProvider } from "./src/services/restaurant/restaurant.context";
 
