@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
 
-import { View, StyleSheet } from "react-native";
+import { View, FlatList } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { RestaurantInfo } from "../components/RestaurantInfoCard";
+import { RestaurantInfoCard } from "../components/RestaurantInfoCard";
+import { Spacer } from "../../../components/Spacer/Spacer";
 
 export const RestaurantScreen = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -20,7 +21,15 @@ export const RestaurantScreen = () => {
       </Search>
       {/* List */}
       <List>
-        <RestaurantInfo />
+        <RestaurantList
+          data={[{}, {}]}
+          renderItem={() => (
+            <Spacer>
+              <RestaurantInfoCard />
+            </Spacer>
+          )}
+          keyExtractor={(item) => item.name}
+        />
       </List>
     </>
   );
@@ -34,3 +43,9 @@ const List = styled(View)`
   flex: 1;
   padding: ${(props) => props.theme.space[3]};
 `;
+
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 8,
+  },
+})``;
