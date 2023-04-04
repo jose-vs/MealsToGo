@@ -3,14 +3,16 @@ import { AppRegistry } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
 import { ThemeProvider } from "styled-components/native";
 import { name as appName } from "./app.json";
-import App from "./src/app";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { theme } from "./src/infrastructure/theme ";
+import { NavigationContainer } from "@react-navigation/native";
 
 import {
   useFonts as useOswald,
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
+import TabNavigator from "./src/navigator";
 
 export default function Main() {
   const [oswaldLoaded] = useOswald({
@@ -28,7 +30,10 @@ export default function Main() {
   return (
     <ThemeProvider theme={theme}>
       <PaperProvider>
-        <App />
+        <NavigationContainer>
+          <TabNavigator />
+          <ExpoStatusBar style="auto" />
+        </NavigationContainer>
       </PaperProvider>
     </ThemeProvider>
   );

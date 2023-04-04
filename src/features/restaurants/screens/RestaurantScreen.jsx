@@ -5,12 +5,13 @@ import { View, FlatList } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/RestaurantInfoCard";
 import { Spacer } from "../../../components/Spacer/Spacer";
+import { SafeArea } from "../../../components/utility/SafeArea";
 
 export const RestaurantScreen = () => {
   const [searchValue, setSearchValue] = useState("");
 
   return (
-    <>
+    <SafeArea>
       {/* SEARCH  */}
       <Search>
         <Searchbar
@@ -21,17 +22,17 @@ export const RestaurantScreen = () => {
       </Search>
       {/* List */}
       <List>
-        <RestaurantList
-          data={[{}, {}]}
+        <FlatList
+          data={[]}
           renderItem={() => (
-            <Spacer>
+            <Spacer position={"bottom"} size={"large"}>
               <RestaurantInfoCard />
             </Spacer>
           )}
           keyExtractor={(item) => item.name}
         />
       </List>
-    </>
+    </SafeArea>
   );
 };
 
@@ -41,11 +42,5 @@ const Search = styled(View)`
 
 const List = styled(View)`
   flex: 1;
-  padding: ${(props) => props.theme.space[3]};
+  padding-horizontal: ${(props) => props.theme.space[3]};
 `;
-
-const RestaurantList = styled(FlatList).attrs({
-  contentContainerStyle: {
-    padding: 8,
-  },
-})``;
